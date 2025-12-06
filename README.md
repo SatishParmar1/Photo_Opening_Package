@@ -4,15 +4,6 @@ A powerful, highly customizable, and easy-to-use Flutter package for viewing ima
 
 ![Photo Opener Banner](https://via.placeholder.com/1200x600.png?text=Photo+Opener+Package)
 
-## Author
-
-**Satish Parmar**  
-*   **GitHub**: [SatishParmar1](https://github.com/SatishParmar1)
-*   **Repository**: [Photo_Opening_Package](https://github.com/SatishParmar1/Photo_Opening_Package)
-*   **Other Packages**: [smart_review_prompter](https://github.com/SatishParmar1/smart_review_prompter) - A smart way to prompt users for app reviews.
-
----
-
 ## Features
 
 *   **📸 Advanced Image Viewer**:
@@ -185,4 +176,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Developed with ❤️ by Satish Parmar**
+## Author
+
+**Satish Parmar**
+
+*   **GitHub**: [SatishParmar1](https://github.com/SatishParmar1)
+*   **Repository**: [Photo_Opening_Package](https://github.com/SatishParmar1/Photo_Opening_Package)
+*   **Other Packages**: [smart_review_prompter](https://github.com/SatishParmar1/smart_review_prompter) - A smart way to prompt users for app reviews.
