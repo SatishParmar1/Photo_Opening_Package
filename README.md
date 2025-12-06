@@ -35,11 +35,11 @@ A powerful, highly customizable, and easy-to-use Flutter package for viewing ima
 
 ## Installation
 
-Add `photo_opener` to your `pubspec.yaml`:
+Add `photo_opener_view` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  photo_opener: ^1.0.0
+  photo_opener_view: ^1.0.0
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ dependencies:
 ### 1. Open a Single Image
 
 ```dart
-import 'package:photo_opener/photo_opener.dart';
+import 'package:photo_opener_view/photo_opener_view.dart';
 
 MediaViewer.openImage(
   context,

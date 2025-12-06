@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:photo_opener/photo_opener.dart';
+import 'package:photo_opener_view/photo_opener_view.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,5 +1,5 @@
 name: example
-description: Demo app for photo_opener package
+description: Demo app for photo_opener_view package
 
 publish_to: 'none'
 
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  photo_opener:
+  photo_opener_view:
     path: ../
 
 dev_dependencies:

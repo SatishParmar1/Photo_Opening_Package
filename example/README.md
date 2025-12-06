@@ -1,6 +1,6 @@
 # Photo Opener Example
 
-This is a complete example application demonstrating the features of the `photo_opener` package.
+This is a complete example application demonstrating the features of the `photo_opener_view` package.
 
 ## Features Demonstrated
 
