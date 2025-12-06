@@ -1,7 +1,8 @@
 name: photo_opener
-description: "A new Flutter project."
-version: 0.0.1
-homepage:
+description: A powerful and customizable Flutter package for viewing images and videos with beautiful UI styles and animations.
+version: 1.0.0
+homepage: https://github.com/SatishParmar1/Photo_Opening_Package
+repository: https://github.com/SatishParmar1/Photo_Opening_Package
 
 environment:
   sdk: ^3.9.0
