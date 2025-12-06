@@ -81,10 +81,7 @@ class DemoScreen extends StatelessWidget {
   Widget _buildSectionTitle(String title) {
     return Text(
       title,
-      style: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
+      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
 
@@ -128,7 +125,7 @@ class DemoScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withValues(alpha: 0.2),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -143,9 +140,7 @@ class DemoScreen extends StatelessWidget {
                       if (progress == null) return child;
                       return Container(
                         color: Colors.grey[300],
-                        child: const Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                        child: const Center(child: CircularProgressIndicator()),
                       );
                     },
                   ),
@@ -182,9 +177,7 @@ class DemoScreen extends StatelessWidget {
       },
       icon: const Icon(Icons.photo_library),
       label: const Text('Open Gallery (5 images)'),
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.all(16),
-      ),
+      style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(16)),
     );
   }
 
@@ -199,9 +192,9 @@ class DemoScreen extends StatelessWidget {
           autoPlay: true,
           looping: true,
           onShare: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Share video!')),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('Share video!')));
           },
         );
       },
@@ -230,11 +223,7 @@ class DemoScreen extends StatelessWidget {
       children: styles.map((style) {
         return ElevatedButton(
           onPressed: () {
-            MediaViewer.openImage(
-              context,
-              sampleImages[0],
-              style: style.$2,
-            );
+            MediaViewer.openImage(context, sampleImages[0], style: style.$2);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: style.$3,

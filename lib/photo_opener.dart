@@ -1,4 +1,4 @@
 /// A Flutter package for viewing images and videos with beautiful UI.
-library photo_opener;
+library;
 
 export 'media_viewer.dart';

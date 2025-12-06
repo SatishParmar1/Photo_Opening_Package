@@ -1,5 +1,5 @@
 // lib/media_viewer.dart
-library media_viewer;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,28 +39,25 @@ class MediaViewer {
         opaque: false,
         pageBuilder: (context, animation, secondaryAnimation) =>
             ImageViewerScreen(
-          imageUrl: imageUrl,
-          heroTag: heroTag,
-          isNetworkImage: isNetworkImage,
-          style: style,
-          backgroundColor: backgroundColor,
-          enableSwipeToDismiss: enableSwipeToDismiss,
-          onShare: onShare,
-          onDownload: onDownload,
-          onFavorite: onFavorite,
-          loadingBuilder: loadingBuilder,
-          errorBuilder: errorBuilder,
-          customHeader: customHeader,
-          customFooter: customFooter,
-          minScale: minScale,
-          maxScale: maxScale,
-          immersive: immersive,
-        ),
+              imageUrl: imageUrl,
+              heroTag: heroTag,
+              isNetworkImage: isNetworkImage,
+              style: style,
+              backgroundColor: backgroundColor,
+              enableSwipeToDismiss: enableSwipeToDismiss,
+              onShare: onShare,
+              onDownload: onDownload,
+              onFavorite: onFavorite,
+              loadingBuilder: loadingBuilder,
+              errorBuilder: errorBuilder,
+              customHeader: customHeader,
+              customFooter: customFooter,
+              minScale: minScale,
+              maxScale: maxScale,
+              immersive: immersive,
+            ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
         transitionDuration: const Duration(milliseconds: 300),
       ),
@@ -91,26 +88,23 @@ class MediaViewer {
         opaque: false,
         pageBuilder: (context, animation, secondaryAnimation) =>
             ImageGalleryScreen(
-          imageUrls: imageUrls,
-          initialIndex: initialIndex,
-          isNetworkImage: isNetworkImage,
-          style: style,
-          captions: captions,
-          showThumbnails: showThumbnails,
-          onShare: onShare,
-          onDownload: onDownload,
-          pageController: pageController,
-          scrollDirection: scrollDirection,
-          customHeader: customHeader,
-          customFooter: customFooter,
-          onPageChanged: onPageChanged,
-          immersive: immersive,
-        ),
+              imageUrls: imageUrls,
+              initialIndex: initialIndex,
+              isNetworkImage: isNetworkImage,
+              style: style,
+              captions: captions,
+              showThumbnails: showThumbnails,
+              onShare: onShare,
+              onDownload: onDownload,
+              pageController: pageController,
+              scrollDirection: scrollDirection,
+              customHeader: customHeader,
+              customFooter: customFooter,
+              onPageChanged: onPageChanged,
+              immersive: immersive,
+            ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
         transitionDuration: const Duration(milliseconds: 300),
       ),
@@ -142,27 +136,24 @@ class MediaViewer {
         opaque: false,
         pageBuilder: (context, animation, secondaryAnimation) =>
             VideoViewerScreen(
-          videoUrl: videoUrl,
-          isNetworkVideo: isNetworkVideo,
-          style: style,
-          title: title,
-          subtitle: subtitle,
-          autoPlay: autoPlay,
-          looping: looping,
-          onShare: onShare,
-          showControls: showControls,
-          allowFullScreen: allowFullScreen,
-          allowPlaybackSpeed: allowPlaybackSpeed,
-          allowMuting: allowMuting,
-          startAt: startAt,
-          overlay: overlay,
-          immersive: immersive,
-        ),
+              videoUrl: videoUrl,
+              isNetworkVideo: isNetworkVideo,
+              style: style,
+              title: title,
+              subtitle: subtitle,
+              autoPlay: autoPlay,
+              looping: looping,
+              onShare: onShare,
+              showControls: showControls,
+              allowFullScreen: allowFullScreen,
+              allowPlaybackSpeed: allowPlaybackSpeed,
+              allowMuting: allowMuting,
+              startAt: startAt,
+              overlay: overlay,
+              immersive: immersive,
+            ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
         transitionDuration: const Duration(milliseconds: 300),
       ),
@@ -171,13 +162,7 @@ class MediaViewer {
 }
 
 /// Different viewing styles
-enum MediaViewerStyle {
-  modern,
-  minimal,
-  instagram,
-  cinematic,
-  glassmorphism,
-}
+enum MediaViewerStyle { modern, minimal, instagram, cinematic, glassmorphism }
 
 /// Single Image Viewer with zoom, pan, and swipe to dismiss
 class ImageViewerScreen extends StatefulWidget {
@@ -199,7 +184,7 @@ class ImageViewerScreen extends StatefulWidget {
   final bool immersive;
 
   const ImageViewerScreen({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.heroTag,
     this.isNetworkImage = true,
@@ -216,7 +201,7 @@ class ImageViewerScreen extends StatefulWidget {
     this.minScale = 1.0,
     this.maxScale = 4.0,
     this.immersive = true,
-  }) : super(key: key);
+  });
 
   @override
   State<ImageViewerScreen> createState() => _ImageViewerScreenState();
@@ -246,9 +231,10 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
       vsync: this,
       duration: const Duration(milliseconds: 200),
     );
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _fadeController, curve: Curves.easeOut),
-    );
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _fadeController, curve: Curves.easeOut));
     _fadeController.forward();
     _photoViewController = PhotoViewController();
     if (widget.immersive) {
@@ -329,7 +315,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 color: (widget.backgroundColor ?? _getBackgroundColor())
-                    .withOpacity(_isDragging ? 0.5 : 0.95),
+                    .withValues(alpha: _isDragging ? 0.5 : 0.95),
               ),
             ),
             // Image with gestures
@@ -344,10 +330,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
                   child: Transform.scale(
                     scale: _dragScale,
                     child: widget.heroTag != null
-                        ? Hero(
-                            tag: widget.heroTag!,
-                            child: _buildPhotoView(),
-                          )
+                        ? Hero(tag: widget.heroTag!, child: _buildPhotoView())
                         : _buildPhotoView(),
                   ),
                 ),
@@ -385,8 +368,8 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
             : _buildLoadingIndicator(event),
         errorBuilder: (context, error, stackTrace) =>
             widget.errorBuilder != null
-                ? widget.errorBuilder!(context)
-                : _buildErrorWidget(),
+            ? widget.errorBuilder!(context)
+            : _buildErrorWidget(),
         enableRotation: true,
         gaplessPlayback: true,
       ),
@@ -443,13 +426,11 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
       width: 100,
       height: 100,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withOpacity(0.2)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
       ),
-      child: Center(
-        child: _buildModernLoader(progress),
-      ),
+      child: Center(child: _buildModernLoader(progress)),
     );
   }
 
@@ -457,9 +438,9 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.red.withOpacity(0.1),
+        color: Colors.red.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.red.withOpacity(0.3)),
+        border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -504,10 +485,10 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.black.withOpacity(0.5),
+              Colors.black.withValues(alpha: 0.5),
               Colors.transparent,
               Colors.transparent,
-              Colors.black.withOpacity(0.5),
+              Colors.black.withValues(alpha: 0.5),
             ],
             stops: const [0.0, 0.15, 0.85, 1.0],
           ),
@@ -518,10 +499,10 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.black.withOpacity(0.8),
+              Colors.black.withValues(alpha: 0.8),
               Colors.transparent,
               Colors.transparent,
-              Colors.black.withOpacity(0.8),
+              Colors.black.withValues(alpha: 0.8),
             ],
             stops: const [0.0, 0.2, 0.8, 1.0],
           ),
@@ -532,10 +513,10 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.black.withOpacity(0.6),
+              Colors.black.withValues(alpha: 0.6),
               Colors.transparent,
               Colors.transparent,
-              Colors.black.withOpacity(0.6),
+              Colors.black.withValues(alpha: 0.6),
             ],
             stops: const [0.0, 0.15, 0.85, 1.0],
           ),
@@ -596,9 +577,9 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
         ? Container(
             margin: const EdgeInsets.symmetric(horizontal: 4),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.white.withOpacity(0.2)),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
             ),
             child: IconButton(
               icon: Icon(icon, color: color, size: 24),
@@ -665,9 +646,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
       padding: const EdgeInsets.all(16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildZoomIndicator(),
-        ],
+        children: [_buildZoomIndicator()],
       ),
     );
   }
@@ -677,11 +656,11 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: widget.style == MediaViewerStyle.glassmorphism
-            ? Colors.white.withOpacity(0.1)
-            : Colors.black.withOpacity(0.5),
+            ? Colors.white.withValues(alpha: 0.1)
+            : Colors.black.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
         border: widget.style == MediaViewerStyle.glassmorphism
-            ? Border.all(color: Colors.white.withOpacity(0.2))
+            ? Border.all(color: Colors.white.withValues(alpha: 0.2))
             : null,
       ),
       child: Row(
@@ -691,10 +670,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
           const SizedBox(width: 8),
           const Text(
             'Double tap to zoom',
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: 13,
-            ),
+            style: TextStyle(color: Colors.white70, fontSize: 13),
           ),
         ],
       ),
@@ -733,7 +709,7 @@ class ImageGalleryScreen extends StatefulWidget {
   final bool immersive;
 
   const ImageGalleryScreen({
-    Key? key,
+    super.key,
     required this.imageUrls,
     this.initialIndex = 0,
     this.isNetworkImage = true,
@@ -748,7 +724,7 @@ class ImageGalleryScreen extends StatefulWidget {
     this.customFooter,
     this.onPageChanged,
     this.immersive = true,
-  }) : super(key: key);
+  });
 
   @override
   State<ImageGalleryScreen> createState() => _ImageGalleryScreenState();
@@ -767,7 +743,8 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
   void initState() {
     super.initState();
     _currentIndex = widget.initialIndex;
-    _pageController = widget.pageController ??
+    _pageController =
+        widget.pageController ??
         PageController(initialPage: widget.initialIndex);
     _thumbnailController = PageController(
       initialPage: widget.initialIndex,
@@ -892,16 +869,9 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
             child: progress != null
                 ? Text(
                     '${(progress * 100).toInt()}%',
-                    style: const TextStyle(
-                      color: Colors.white54,
-                      fontSize: 16,
-                    ),
+                    style: const TextStyle(color: Colors.white54, fontSize: 16),
                   )
-                : const Icon(
-                    Icons.image,
-                    size: 48,
-                    color: Colors.white24,
-                  ),
+                : const Icon(Icons.image, size: 48, color: Colors.white24),
           ),
         ),
       ),
@@ -915,10 +885,7 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
         children: [
           Icon(Icons.broken_image, color: Colors.white54, size: 64),
           SizedBox(height: 16),
-          Text(
-            'Failed to load image',
-            style: TextStyle(color: Colors.white54),
-          ),
+          Text('Failed to load image', style: TextStyle(color: Colors.white54)),
         ],
       ),
     );
@@ -931,10 +898,10 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.black.withOpacity(0.7),
+            Colors.black.withValues(alpha: 0.7),
             Colors.transparent,
             Colors.transparent,
-            Colors.black.withOpacity(0.8),
+            Colors.black.withValues(alpha: 0.8),
           ],
           stops: const [0.0, 0.15, 0.75, 1.0],
         ),
@@ -974,8 +941,11 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
             children: [
               if (widget.onDownload != null)
                 IconButton(
-                  icon: const Icon(Icons.download_outlined,
-                      color: Colors.white, size: 24),
+                  icon: const Icon(
+                    Icons.download_outlined,
+                    color: Colors.white,
+                    size: 24,
+                  ),
                   onPressed: widget.onDownload,
                 ),
               if (widget.onShare != null)
@@ -994,7 +964,7 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.15),
+        color: Colors.white.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
@@ -1014,10 +984,7 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: Text(
         widget.captions![_currentIndex],
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-        ),
+        style: const TextStyle(color: Colors.white, fontSize: 14),
         textAlign: TextAlign.center,
       ),
     );
@@ -1056,10 +1023,10 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
                 boxShadow: isSelected
                     ? [
                         BoxShadow(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Colors.white.withValues(alpha: 0.3),
                           blurRadius: 8,
                           spreadRadius: 1,
-                        )
+                        ),
                       ]
                     : null,
               ),
@@ -1072,9 +1039,8 @@ class _ImageGalleryScreenState extends State<ImageGalleryScreen>
                       ? CachedNetworkImage(
                           imageUrl: widget.imageUrls[index],
                           fit: BoxFit.cover,
-                          placeholder: (context, url) => Container(
-                            color: Colors.grey[800],
-                          ),
+                          placeholder: (context, url) =>
+                              Container(color: Colors.grey[800]),
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error, color: Colors.white54),
                         )
@@ -1111,7 +1077,7 @@ class VideoViewerScreen extends StatefulWidget {
   final bool immersive;
 
   const VideoViewerScreen({
-    Key? key,
+    super.key,
     required this.videoUrl,
     this.isNetworkVideo = true,
     this.style = MediaViewerStyle.modern,
@@ -1127,7 +1093,7 @@ class VideoViewerScreen extends StatefulWidget {
     this.startAt,
     this.overlay,
     this.immersive = true,
-  }) : super(key: key);
+  });
 
   @override
   State<VideoViewerScreen> createState() => _VideoViewerScreenState();
@@ -1287,45 +1253,45 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
       body: _hasError
           ? _buildErrorWidget()
           : !_isInitialized
-              ? _buildLoadingWidget()
-              : GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _showControls = !_showControls;
-                    });
-                    if (_showControls) {
-                      _startHideControlsTimer();
-                    }
-                  },
-                  onDoubleTapDown: (details) {
-                    final screenWidth = MediaQuery.of(context).size.width;
-                    if (details.localPosition.dx < screenWidth / 2) {
-                      _seekBackward();
-                    } else {
-                      _seekForward();
-                    }
-                  },
-                  child: Stack(
-                    children: [
-                      Center(
-                        child: AspectRatio(
-                          aspectRatio: _controller.value.aspectRatio,
-                          child: VideoPlayer(_controller),
-                        ),
-                      ),
-                      if (widget.overlay != null) widget.overlay!,
-                      if (_isBuffering) _buildBufferingIndicator(),
-                      AnimatedOpacity(
-                        opacity: _showControls ? 1.0 : 0.0,
-                        duration: const Duration(milliseconds: 300),
-                        child: IgnorePointer(
-                          ignoring: !_showControls,
-                          child: _buildControls(),
-                        ),
-                      ),
-                    ],
+          ? _buildLoadingWidget()
+          : GestureDetector(
+              onTap: () {
+                setState(() {
+                  _showControls = !_showControls;
+                });
+                if (_showControls) {
+                  _startHideControlsTimer();
+                }
+              },
+              onDoubleTapDown: (details) {
+                final screenWidth = MediaQuery.of(context).size.width;
+                if (details.localPosition.dx < screenWidth / 2) {
+                  _seekBackward();
+                } else {
+                  _seekForward();
+                }
+              },
+              child: Stack(
+                children: [
+                  Center(
+                    child: AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: VideoPlayer(_controller),
+                    ),
                   ),
-                ),
+                  if (widget.overlay != null) widget.overlay!,
+                  if (_isBuffering) _buildBufferingIndicator(),
+                  AnimatedOpacity(
+                    opacity: _showControls ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 300),
+                    child: IgnorePointer(
+                      ignoring: !_showControls,
+                      child: _buildControls(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
     );
   }
 
@@ -1338,7 +1304,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
           const SizedBox(height: 16),
           Text(
             'Loading video...',
-            style: TextStyle(color: Colors.white.withOpacity(0.7)),
+            style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
           ),
         ],
       ),
@@ -1374,7 +1340,10 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
           const SizedBox(height: 16),
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Go Back', style: TextStyle(color: Colors.white70)),
+            child: const Text(
+              'Go Back',
+              style: TextStyle(color: Colors.white70),
+            ),
           ),
         ],
       ),
@@ -1386,7 +1355,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.5),
+          color: Colors.black.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(12),
         ),
         child: const CircularProgressIndicator(color: Colors.white),
@@ -1401,10 +1370,10 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.black.withOpacity(0.7),
+            Colors.black.withValues(alpha: 0.7),
             Colors.transparent,
             Colors.transparent,
-            Colors.black.withOpacity(0.8),
+            Colors.black.withValues(alpha: 0.8),
           ],
           stops: const [0.0, 0.25, 0.65, 1.0],
         ),
@@ -1412,11 +1381,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
       child: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildTopBar(),
-            _buildCenterControls(),
-            _buildBottomBar(),
-          ],
+          children: [_buildTopBar(), _buildCenterControls(), _buildBottomBar()],
         ),
       ),
     );
@@ -1449,7 +1414,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
                     Text(
                       widget.subtitle!,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.7),
+                        color: Colors.white.withValues(alpha: 0.7),
                         fontSize: 12,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -1532,9 +1497,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
               title: Text(
                 '${speed}x',
                 style: TextStyle(
-                  color: speed == _playbackSpeed
-                      ? Colors.blue
-                      : Colors.white,
+                  color: speed == _playbackSpeed ? Colors.blue : Colors.white,
                   fontWeight: speed == _playbackSpeed
                       ? FontWeight.bold
                       : FontWeight.normal,
@@ -1585,7 +1548,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         shape: BoxShape.circle,
       ),
       child: IconButton(
@@ -1607,7 +1570,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: Colors.white.withOpacity(0.3),
+              color: Colors.white.withValues(alpha: 0.3),
               blurRadius: 20,
               spreadRadius: 2,
             ),
@@ -1638,8 +1601,12 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
               Expanded(
                 child: SliderTheme(
                   data: SliderTheme.of(context).copyWith(
-                    thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                    overlayShape: const RoundSliderOverlayShape(overlayRadius: 14),
+                    thumbShape: const RoundSliderThumbShape(
+                      enabledThumbRadius: 6,
+                    ),
+                    overlayShape: const RoundSliderOverlayShape(
+                      overlayRadius: 14,
+                    ),
                     trackHeight: 3,
                   ),
                   child: Slider(
@@ -1652,7 +1619,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
                     min: 0,
                     max: _controller.value.duration.inMilliseconds.toDouble(),
                     activeColor: Colors.white,
-                    inactiveColor: Colors.white.withOpacity(0.3),
+                    inactiveColor: Colors.white.withValues(alpha: 0.3),
                     onChanged: (value) {
                       _controller.seekTo(Duration(milliseconds: value.toInt()));
                     },
@@ -1693,14 +1660,15 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
                       width: 100,
                       child: SliderTheme(
                         data: SliderTheme.of(context).copyWith(
-                          thumbShape:
-                              const RoundSliderThumbShape(enabledThumbRadius: 5),
+                          thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 5,
+                          ),
                           trackHeight: 2,
                         ),
                         child: Slider(
                           value: _isMuted ? 0.0 : _currentVolume,
                           activeColor: Colors.white,
-                          inactiveColor: Colors.white.withOpacity(0.3),
+                          inactiveColor: Colors.white.withValues(alpha: 0.3),
                           onChanged: (value) {
                             setState(() {
                               _currentVolume = value;
@@ -1717,15 +1685,20 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
                 children: [
                   if (widget.allowPlaybackSpeed)
                     Container(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
                         '${_playbackSpeed}x',
-                        style: const TextStyle(color: Colors.white, fontSize: 12),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   if (widget.allowFullScreen)
