@@ -559,7 +559,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
                   onPressed: widget.onShare,
                   tooltip: 'Share',
                 ),
-               _buildMoreOptionsButton(),
+              _buildMoreOptionsButton(),
             ],
           ),
         ],
