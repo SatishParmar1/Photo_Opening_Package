@@ -559,7 +559,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen>
                   onPressed: widget.onShare,
                   tooltip: 'Share',
                 ),
-              _buildMoreOptionsButton(),
+             /* _buildMoreOptionsButton(),*/
             ],
           ),
         ],
@@ -1399,27 +1399,30 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
           ),
           if (widget.title != null)
             Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    widget.title!,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  if (widget.subtitle != null)
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
                     Text(
-                      widget.subtitle!,
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.7),
-                        fontSize: 12,
+                      widget.title!,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
-                ],
+                    if (widget.subtitle != null)
+                      Text(
+                        widget.subtitle!,
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.7),
+                          fontSize: 12,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                  ],
+                ),
               ),
             ),
           Row(
@@ -1566,7 +1569,7 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
         width: 72,
         height: 72,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white.withValues(alpha: 0.5),
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
@@ -1576,11 +1579,13 @@ class _VideoViewerScreenState extends State<VideoViewerScreen>
             ),
           ],
         ),
-        child: AnimatedIcon(
-          icon: AnimatedIcons.play_pause,
-          progress: _playPauseController,
-          color: Colors.black,
-          size: 36,
+        child: Center(
+          child: AnimatedIcon(
+            icon: AnimatedIcons.play_pause,
+            progress: _playPauseController,
+            color: Colors.black,
+            size: 36,
+          ),
         ),
       ),
     );

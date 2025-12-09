@@ -187,8 +187,8 @@ class DemoScreen extends StatelessWidget {
         MediaViewer.openVideo(
           context,
           sampleVideo,
-          title: 'Butterfly Video',
-          subtitle: 'Nature documentary',
+          title: 'Butterfly Videocvbnvbnm, vbnjmkvgbhjnmk,l',
+          subtitle: 'Nature documentarycvbbbbbbbbbbbbbbbbbbbbbbb',
           autoPlay: true,
           looping: true,
           onShare: () {
