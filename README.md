@@ -39,7 +39,7 @@ Add `photo_opener_view` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  photo_opener_view: ^1.0.0
+  photo_opener_view: ^1.0.1
 ```
 
 ## Usage

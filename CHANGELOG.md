@@ -1,3 +1,9 @@
+## 1.0.1
+
+* Fixed bug to getting more points
+* Added better error handling
+* Improve Video player
+
 ## 1.0.0
 
 * Initial release of `photo_opener_view`.
