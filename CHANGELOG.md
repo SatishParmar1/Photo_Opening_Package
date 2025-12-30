@@ -1,3 +1,11 @@
+
+## 1.1.0
+
+* Added `VideoThumbnailContainer` for inline video playback with seamless fullscreen transition.
+* Added `PlayButtonTheme` for customizing video play buttons.
+* updated Video player.
+* Fixed bug to getting more points
+
 ## 1.0.1
 
 * Fixed bug to getting more points
